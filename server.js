@@ -26,7 +26,7 @@ const app = express();
 
 // Middleware setup
 app.use(cors({
-  origin: ["https://likeslelo.onrender.com", "http://localhost:3000"],
+  origin: ["https://likeslelo.onrender.com","https://likeslelo.netlify.app", "http://localhost:3000"],
   credentials: true,
 }));
 
