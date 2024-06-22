@@ -26,7 +26,7 @@ const app = express();
 
 // Middleware setup
 app.use(cors({
-  origin: ["https://likeslelo.onrender.com","https://likeslelo.netlify.app", "http://localhost:3000"],
+  origin: ["https://likeslelo.onrender.com", "https://likeslelo.netlify.app", "http://localhost:3000"],
   credentials: true,
 }));
 
@@ -39,9 +39,9 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/product", productRoutes);
 
-//route rest api
-app.use("*", function (req, res) {
-  res.sendFile(__dirname, "./client/build/index.html");
+// Fallback to React app
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 // Define port
@@ -52,8 +52,5 @@ console.log(`MONGO_URL is ${process.env.MONGO_URL}`.bgYellow.white);
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(
-    `Server Running on ${process.env.DEV_MODE} mode on port ${PORT}`.bgCyan
-      .white
-  );
+  console.log(`Server Running on ${process.env.DEV_MODE} mode on port ${PORT}`.bgCyan.white);
 });
