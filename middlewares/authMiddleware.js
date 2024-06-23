@@ -1,8 +1,12 @@
 import JWT from "jsonwebtoken";
 import userModel from "../models/userModel.js";
 
-//Protected Routes token base
+// Protected Routes token base
 export const requireSignIn = async (req, res, next) => {
+  if (req.method === "OPTIONS") {
+    return next();
+  }
+
   try {
     const decode = JWT.verify(
       req.headers.authorization,
@@ -12,11 +16,19 @@ export const requireSignIn = async (req, res, next) => {
     next();
   } catch (error) {
     console.log(error);
+    res.status(401).send({
+      success: false,
+      message: "Authentication failed",
+    });
   }
 };
 
-//admin access
+// Admin access
 export const isAdmin = async (req, res, next) => {
+  if (req.method === "OPTIONS") {
+    return next();
+  }
+
   try {
     const user = await userModel.findById(req.user._id);
     if (user.role !== 1) {
