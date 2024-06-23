@@ -46,7 +46,7 @@ app.use(compression());
 // Serve static files with caching headers
 const staticOptions = {
   maxAge: "1y", // Cache for 1 year
-  etag: false, // Disable ETag headers
+  etag: false,
 };
 
 app.use(express.static(path.join(__dirname, "./client/build"), staticOptions));
