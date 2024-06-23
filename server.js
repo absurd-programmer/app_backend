@@ -10,6 +10,7 @@ import productRoutes from "./routes/productRoutes.js";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
+import compression from "compression";
 
 // Configure environment variables
 dotenv.config();
@@ -38,7 +39,17 @@ app.use(
 
 app.use(express.json());
 app.use(morgan("dev"));
-app.use(express.static(path.join(__dirname, "./client/build")));
+
+// Enable GZIP compression
+app.use(compression());
+
+// Serve static files with caching headers
+const staticOptions = {
+  maxAge: "1y", // Cache for 1 year
+  etag: false, // Disable ETag headers
+};
+
+app.use(express.static(path.join(__dirname, "./client/build"), staticOptions));
 
 // Route setup
 app.use("/api/v1/auth", authRoutes);
