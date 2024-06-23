@@ -29,6 +29,7 @@ const app = express();
 app.use(
   cors({
     origin: [
+      "https://likeslelo.vercel.app",
       "https://likeslelo.onrender.com",
       "https://likeslelo.netlify.app",
       "http://localhost:3000",
