@@ -52,3 +52,45 @@ export const getBlogsController = async (req, res) => {
     });
   }
 };
+
+export const updateBlogController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, content } = req.body;
+    const blog = await blogModel.findByIdAndUpdate(
+      id,
+      { title, content, slug: slugify(title) },
+      { new: true }
+    );
+    res.status(200).send({
+      success: true,
+      message: "Blog updated successfully",
+      blog,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in updating blog",
+      error,
+    });
+  }
+};
+
+export const deleteBlogController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await blogModel.findByIdAndDelete(id);
+    res.status(200).send({
+      success: true,
+      message: "Blog deleted successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in deleting blog",
+      error,
+    });
+  }
+};
