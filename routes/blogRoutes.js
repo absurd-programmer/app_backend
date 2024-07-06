@@ -22,7 +22,7 @@ router.put("/:id", updateBlogController);
 // Delete blog
 router.delete("/:id", deleteBlogController);
 
-// Get single blog
-router.get("/get-blogs/:slug", getspecificBlogController);
+// Get single blog by slug
+router.get("/get-blog/:slug", getspecificBlogController);
 
 export default router;
