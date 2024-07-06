@@ -11,9 +11,14 @@ const router = express.Router();
 
 // Create blog
 router.post("/create-blog", requireSignIn, isAdmin, createBlogController);
-router.get("/", getBlogsController);
+
+// Get all blogs
+router.get("/get-blogs", getBlogsController);
+
+// Update blog
 router.put("/:id", updateBlogController);
+
+// Delete blog
 router.delete("/:id", deleteBlogController);
-// Other routes for update, get, delete can be added similarly
 
 export default router;
