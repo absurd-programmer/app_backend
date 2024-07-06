@@ -94,3 +94,27 @@ export const deleteBlogController = async (req, res) => {
     });
   }
 };
+
+export const getspecificBlogController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const blog = await blogModel.findById(id);
+    if (!blog) {
+      return res.status(404).send({
+        success: false,
+        message: "Blog not found",
+      });
+    }
+    res.status(200).send({
+      success: true,
+      blog,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in fetching blog",
+      error,
+    });
+  }
+};
