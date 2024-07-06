@@ -4,6 +4,7 @@ import {
   createBlogController,
   deleteBlogController,
   getBlogsController,
+  getspecificBlogController,
   updateBlogController,
 } from "./../controllers/blogController.js";
 
@@ -20,5 +21,8 @@ router.put("/:id", updateBlogController);
 
 // Delete blog
 router.delete("/:id", deleteBlogController);
+
+// Get single blog
+router.get("/get-blogs/:id", getspecificBlogController);
 
 export default router;
