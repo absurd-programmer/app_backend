@@ -97,8 +97,7 @@ export const deleteBlogController = async (req, res) => {
 
 export const getspecificBlogController = async (req, res) => {
   try {
-    const { slug } = req.params;
-    const blog = await blogModel.findOne({ slug });
+    const blog = await blogModel.findOne({ slug: req.params.slug });
     if (!blog) {
       return res.status(404).send({
         success: false,
@@ -119,3 +118,4 @@ export const getspecificBlogController = async (req, res) => {
     });
   }
 };
+
