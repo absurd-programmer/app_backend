@@ -23,6 +23,6 @@ router.put("/:id", updateBlogController);
 router.delete("/:id", deleteBlogController);
 
 // Get single blog
-router.get("/get-blogs/:id", getspecificBlogController);
+router.get("/get-blogs/:slug", getspecificBlogController);
 
 export default router;
