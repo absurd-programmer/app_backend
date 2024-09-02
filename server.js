@@ -34,6 +34,8 @@ app.use(
       "https://likeslelo.onrender.com",
       "https://likeslelo.netlify.app",
       "http://localhost:3000",
+      "https://www.likeslelo.tech",
+      "http://likeslelo.tech",
     ],
     credentials: true,
   })
