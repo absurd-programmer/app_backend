@@ -36,6 +36,9 @@ app.use(
       "http://localhost:3000",
       "https://www.likeslelo.tech",
       "http://likeslelo.tech",
+      "https://www.likeslelo.me",
+      "http://likeslelo.me",
+
     ],
     credentials: true,
   })
